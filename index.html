@@ -12,13 +12,21 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 	<script type="module" src="/javascript/ros_charts.js"></script>
+	<script type="module" src="/javascript/ros_send_actions.js"></script>
 </head>
 
 <body>
 	<h1>Basic frame for the ROS2 Dashboard</h1>
 	<p>Connection status: <span id="connection_tag"></span></p>
-	<div  style="width: 400px; height: 200px;">
-	<canvas id="pie_chart_canvas" style="width:33%; height:33%;"></canvas>
+	<div style="width: 400px; height: 200px;">
+		<canvas id="pie_chart_canvas" style="width:33%; height:33%;"></canvas>
+	</div>
+	<div class="position-container">
+		<form onsubmit="return false">
+			<input type="text" placeholder="X-axis" name="target-x-pos-field" id="target-x-pos-field">
+			<input type="text" placeholder="Y-axis" name="target-y-pos-field" id="target-y-pos-field">
+			<button id="position-submit">Enter</button>
+		</form>
 	</div>
 </body>
 
