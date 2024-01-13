@@ -8,6 +8,8 @@ document.getElementById("axis-submit").addEventListener("click", sendNewAxisValu
 document.getElementById("home-x-axis-button").addEventListener("click", () => { homeAxis("X") });
 document.getElementById("home-y-axis-button").addEventListener("click", () => { homeAxis("Y") });
 document.getElementById("home-all-button").addEventListener("click", () => { homeAxis("All") });
+document.getElementById("start-detection-scan-button").addEventListener("click", sendScanCommand);
+document.getElementById("start-detection-gathering-button").addEventListener("click", sendDataGatheringCommand);
 
 var targetPositionTopic = new ROSLIB.Topic({
     ros: ros,
@@ -25,6 +27,18 @@ var homeAxisTopic = new ROSLIB.Topic({
     ros: ros,
     name: '/home_axis',
     messageType: 'std_msgs/String'
+});
+
+var scanCommandTopic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/scan_command',
+    messageType: 'std_msgs/Int8'
+});
+
+var dataGatheringCommandTopic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/data_gathering_command',
+    messageType: 'std_msgs/Int8'
 });
 
 function sendNewTargetPosition() {
@@ -70,4 +84,20 @@ function homeAxis(axisToHome) {
     });
 
     homeAxisTopic.publish(axisValue);
+}
+
+function sendScanCommand() {
+    var startCommand = new ROSLIB.Message({
+        data: 1
+    });
+
+    scanCommandTopic.publish(startCommand);
+}
+
+function sendDataGatheringCommand() {
+    var startCommand = new ROSLIB.Message({
+        data: 1
+    });
+
+    dataGatheringCommandTopic.publish(startCommand);
 }
