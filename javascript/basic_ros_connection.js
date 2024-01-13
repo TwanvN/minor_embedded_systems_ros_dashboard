@@ -13,7 +13,7 @@ ros.on('error', function (error) {
 // Find out exactly when we made a connection.
 ros.on('connection', function () {
     let span = document.getElementById("connection_tag");
-    span.textContent = "Connected";
+    span.innerHTML = "Connected";
     span.style.color = 'green';
     console.log('Connection made!');
 });

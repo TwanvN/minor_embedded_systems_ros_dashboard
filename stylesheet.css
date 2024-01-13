@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 1fr 5.5fr;
+    gap: 20px 0em;
+}
+
+.Body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "LiveFeed Commands"
+        "DetectionFeed DetectionFeed";
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.LiveFeed {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ".";
+    grid-area: LiveFeed;
+}
+
+.Commands {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ".";
+    grid-area: Commands;
+}
+
+.DetectionFeed {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ".";
+    grid-area: DetectionFeed;
+}
+
+.Header {
+    display: grid;
+    grid-template-columns: 3.5fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "Titel Connection";
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.Connection {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ".";
+    grid-area: Connection;
+}
+
+.Titel {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        ".";
+    grid-area: Titel;
+}

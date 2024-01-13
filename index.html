@@ -5,28 +5,84 @@
 	<meta charset="utf-8" />
 	<link rel="shortcut icon" href="/images/icons8-plant-48.png">
 	<link rel="icon" href="/images/icons8-plant-48.png">
+	<link rel="stylesheet" href="./stylesheet.css">
 
 	<script src="/javascript/roslib.js"></script>
 	<script src="/javascript/basic_ros_connection.js"></script>
-	<!-- <script type="module" src="/javascript/ros_charts.js"></script> -->
+	<script type="module" src="/javascript/ros_charts.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 	<script type="module" src="/javascript/ros_charts.js"></script>
 	<script type="module" src="/javascript/ros_send_actions.js"></script>
+	<script type="module" src="/javascript/ros_image_feed.js"></script>
 </head>
 
 <body>
-	<h1>Basic frame for the ROS2 Dashboard</h1>
-	<p>Connection status: <span id="connection_tag"></span></p>
-	<div style="width: 400px; height: 200px;">
-		<canvas id="pie_chart_canvas" style="width:33%; height:33%;"></canvas>
+	<!-- <h1>Basic frame for the ROS2 Dashboard</h1>
+	<div class="connection_div">
+		<p>Connection status: <span id="connection_tag"></span></p>
 	</div>
-	<div class="position-container">
-		<form onsubmit="return false">
-			<input type="text" placeholder="X-axis" name="target-x-pos-field" id="target-x-pos-field">
-			<input type="text" placeholder="Y-axis" name="target-y-pos-field" id="target-y-pos-field">
-			<button id="position-submit">Enter</button>
-		</form>
+	<div class="vision_div">
+		<div style="width: 400px; height: 200px;">
+			<canvas id="pie_chart_canvas" style="width:33%; height:33%;"></canvas>
+		</div>
+	</div>
+	<div class="controls_div">
+		<div class="position-container">
+			<form onsubmit="return false">
+				<input type="text" placeholder="X-axis" name="target-x-pos-field" id="target-x-pos-field">
+				<input type="text" placeholder="Y-axis" name="target-y-pos-field" id="target-y-pos-field">
+				<button id="position-submit">Enter</button>
+			</form>
+		</div>
+		<div class="autonomous_taks_div">
+			<button>Scan for detections</button>
+			<button>Gather ripe objects</button>
+		</div>
+	</div>
+	<div class="livefeed_div">
+		<img id="live_feed_rgb" />
+		<img id="detection_feed" />
+	</div> -->
+
+	<div class="container">
+		<div class="Header">
+			<div class="Connection">
+				<p>Connection status: <span id="connection_tag"></span></p>
+			</div>
+			<div class="Titel">
+				<h1>Basic frame for the ROS2 Dashboard</h1>
+			</div>
+		</div>
+		<div class="Body">
+			<div class="LiveFeed">
+				<img id="live_feed_rgb" />
+			</div>
+			<div class="Commands">
+				<div class="position-container">
+					<form onsubmit="return false">
+						<input type="text" placeholder="X-axis" name="target-x-pos-field" id="target-x-pos-field">
+						<input type="text" placeholder="Y-axis" name="target-y-pos-field" id="target-y-pos-field">
+						<button id="position-submit">Enter</button>
+					</form>
+				</div>
+				<div>
+					<button>Home x-axis</button>
+					<button>Home y-axis</button>
+					<button>Home both axis</button>
+				</div>
+			</div>
+			<div class="DetectionFeed">
+				<img id="detection_feed" />
+				<div style="width: 400px; height: 200px;">
+					<canvas id="pie_chart_canvas" style="width:33%; height:33%;"></canvas>
+				</div>
+				<div class="autonomous_taks_div">
+					<button>Scan for detections</button>
+					<button>Gather ripe objects</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 
