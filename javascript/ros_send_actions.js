@@ -5,6 +5,9 @@ const mylist = document.getElementById("myList");
 
 document.getElementById("position-submit").addEventListener("click", sendNewTargetPosition);
 document.getElementById("axis-submit").addEventListener("click", sendNewAxisValue);
+document.getElementById("home-x-axis-button").addEventListener("click", () => { homeAxis("X") });
+document.getElementById("home-y-axis-button").addEventListener("click", () => { homeAxis("Y") });
+document.getElementById("home-all-button").addEventListener("click", () => { homeAxis("All") });
 
 var targetPositionTopic = new ROSLIB.Topic({
     ros: ros,
@@ -15,6 +18,12 @@ var targetPositionTopic = new ROSLIB.Topic({
 var axisPositionTopic = new ROSLIB.Topic({
     ros: ros,
     name: '/axis_target',
+    messageType: 'std_msgs/String'
+});
+
+var homeAxisTopic = new ROSLIB.Topic({
+    ros: ros,
+    name: '/home_axis',
     messageType: 'std_msgs/String'
 });
 
@@ -53,4 +62,12 @@ function sendNewAxisValue() {
     } else {
         console.log("No actual axis");
     }
+}
+
+function homeAxis(axisToHome) {
+    var axisValue = new ROSLIB.Message({
+        data: axisToHome
+    });
+
+    homeAxisTopic.publish(axisValue);
 }
