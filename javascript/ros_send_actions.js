@@ -5,9 +5,9 @@ const mylist = document.getElementById("myList");
 
 document.getElementById("position-submit").addEventListener("click", sendNewTargetPosition);
 document.getElementById("axis-submit").addEventListener("click", sendNewAxisValue);
-document.getElementById("home-x-axis-button").addEventListener("click", () => { homeAxis("X") });
-document.getElementById("home-y-axis-button").addEventListener("click", () => { homeAxis("Y") });
-document.getElementById("home-all-button").addEventListener("click", () => { homeAxis("All") });
+document.getElementById("home-x-axis-button").addEventListener("click", () => { homeAxis(0) });
+document.getElementById("home-y-axis-button").addEventListener("click", () => { homeAxis(1) });
+document.getElementById("home-all-button").addEventListener("click", () => { homeAxis(2) });
 document.getElementById("start-detection-scan-button").addEventListener("click", sendScanCommand);
 document.getElementById("start-detection-gathering-button").addEventListener("click", sendDataGatheringCommand);
 
@@ -26,7 +26,7 @@ var axisPositionTopic = new ROSLIB.Topic({
 var homeAxisTopic = new ROSLIB.Topic({
     ros: ros,
     name: '/home_axis',
-    messageType: 'std_msgs/String'
+    messageType: 'std_msgs/Int8'
 });
 
 var scanCommandTopic = new ROSLIB.Topic({
@@ -65,7 +65,17 @@ function sendNewAxisValue() {
     let axis = mylist.options[mylist.selectedIndex].text;
 
     if (axis !== "---Choose axis---") {
-        const messageValue = axis + " " + document.getElementById('target-axisValue').value;
+        var searchtext = axis;
+        var index;
+
+        for (var i = 0; i < mylist.options.length; ++i) {
+            if (mylist.options[i].text === searchtext) {
+                index = i;
+                break;
+            };
+        }
+
+        const messageValue = (i - 1) + " " + document.getElementById('target-axisValue').value;
         console.log(messageValue);
 
         var axisValue = new ROSLIB.Message({
@@ -78,6 +88,10 @@ function sendNewAxisValue() {
     }
 }
 
+/**
+ * 
+ * @param {number} axisToHome
+ */
 function homeAxis(axisToHome) {
     var axisValue = new ROSLIB.Message({
         data: axisToHome
